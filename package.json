@@ -1,0 +1,18 @@
+{
+  "name": "micro-fork",
+  "version": "0.0.1",
+  "description": "Fast micro router.",
+  "author": "Amio <amio.cn@gmail.com>",
+  "license": "ISC",
+  "repository": "https://github.com/amio/micro-fork",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "find-my-way": "^1.13.0"
+  },
+  "devDependencies": {
+    "micro": "^9.3.1"
+  }
+}
