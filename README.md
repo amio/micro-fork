@@ -49,17 +49,32 @@ module.exports = router()(
 )
 ```
 
+### router
+
+Initialize a router:
+
+```javascript
+router([options = Object])(
+  routeMethodA,
+  routeMethodB,
+  // ...
+)
+```
+
+The `options` will directly goes to [find-my-way](https://github.com/delvedor/find-my-way#findmywayoptions)
+
+
 ### route methods
 
 Each route is a single basic http method that you import from `micro-fork` and has the same arguments:
 
-* `get(path = String, handler = Function)`
-* `post(path = String, handler = Function)`
-* `put(path = String, handler = Function)`
-* `patch(path = String, handler = Function)`
-* `del(path = String, handler = Function)`
-* `head(path = String, handler = Function)`
-* `options(path = String, handler = Function)`
+* `get(path = String, handler = Function, [store = Object])`
+* `post(path = String, handler = Function, [store = Object])`
+* `put(path = String, handler = Function, [store = Object])`
+* `patch(path = String, handler = Function, [store = Object])`
+* `del(path = String, handler = Function, [store = Object])`
+* `head(path = String, handler = Function, [store = Object])`
+* `options(path = String, handler = Function, [store = Object])`
 
 #### path
 
@@ -70,7 +85,7 @@ For more information about how you can define your path, see [find-my-way](https
 #### handler
 
 The `handler` method is a simple function that will make some action base on your path.
-The format of this function is `(req, res, params) => {}`
+The format of this function is `(req, res, params, store) => {}`
 
 ##### `params`
 
@@ -90,6 +105,10 @@ const response = await request('/hello/World')
 
 console.log(response)  // { who: 'World' }
 ```
+
+#### `store`
+
+Last argument, `store` is used to pass an object that you can access later inside the handler function. If needed, store can be updated.
 
 ### Parsing Body
 
