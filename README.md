@@ -1,4 +1,4 @@
-# micro-fork
+# micro-fork [![npm-version][npm-badge]][npm-link]
 
 A fast and functional router for ZEIT's [Micro](https://github.com/zeit/micro).
 Inspired by [microrouter](https://github.com/pedronauck/micro-router),
@@ -139,5 +139,5 @@ const response = await request.post('/user', { body })
 MIT @ Amio
 
 [amio-link]: https://github.com/amio
-[npm-badge]: https://img.shields.io/npm/v/nls.svg?style=flat-square
-[npm-link]: https://www.npmjs.com/package/nls
+[npm-badge]: https://img.shields.io/npm/v/micro-fork.svg?style=flat-square
+[npm-link]: https://www.npmjs.com/package/micro-fork
