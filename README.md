@@ -136,7 +136,7 @@ const response = await request.post('/user', { body })
 
 ## License
 
-MIT @ Amio
+ISC @ Amio
 
 [amio-link]: https://github.com/amio
 [npm-badge]: https://img.shields.io/npm/v/micro-fork.svg?style=flat-square
