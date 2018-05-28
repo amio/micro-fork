@@ -13,6 +13,7 @@ const put = (path, fn, store) => ['PUT', path, fn, store]
 const del = (path, fn, store) => ['DELETE', path, fn, store]
 const post = (path, fn, store) => ['POST', path, fn, store]
 const head = (path, fn, store) => ['HEAD', path, fn, store]
+const patch = (path, fn, store) => ['PATCH', path, fn, store]
 const options = (path, fn, store) => ['OPTIONS', path, fn, store]
 
 module.exports = {
@@ -22,5 +23,6 @@ module.exports = {
   del,
   post,
   head,
+  patch,
   options
 }
