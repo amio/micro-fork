@@ -5,7 +5,8 @@ const { router, get, put, del, post, head, patch, options } = require('..')
 const server = require('http').createServer(router()(
   get('/ping', (req, res) => res.end('pong')),
   post('/users', (req, res) => res.end('created')),
-  del('/users/:id', (req, res, params) => res.end(`deleted ${params.id}`))
+  del('/users/:id', (req, res) => res.end(`deleted ${req.params.id}`)),
+  get('/users', (req, res) => res.end(`query age ${req.query.age}`))
 ))
 
 tap.test('Exports right api types', t => {
@@ -39,7 +40,13 @@ tap.test('Response to DELETE:/users/123 with 200', t => {
     .expect(200, 'deleted 123')
 })
 
-tap.test('Response unmatched route with 404', t => {
+tap.test('Response to GET:/users?age=20 with 200', t => {
+  return request(server)
+    .get('/users?age=20')
+    .expect(200, 'query age 20')
+})
+
+tap.test('Response to unmatched route with 404', t => {
   return request(server)
     .get('/404')
     .expect(404)

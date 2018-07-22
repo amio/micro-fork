@@ -1,3 +1,5 @@
+const qs = require('querystring')
+const url = require('url')
 const fmw = require('find-my-way')
 
 function router (options) {
@@ -8,13 +10,21 @@ function router (options) {
   }
 }
 
-const get = (path, fn, store) => ['GET', path, fn, store]
-const put = (path, fn, store) => ['PUT', path, fn, store]
-const del = (path, fn, store) => ['DELETE', path, fn, store]
-const post = (path, fn, store) => ['POST', path, fn, store]
-const head = (path, fn, store) => ['HEAD', path, fn, store]
-const patch = (path, fn, store) => ['PATCH', path, fn, store]
-const options = (path, fn, store) => ['OPTIONS', path, fn, store]
+function enhancer (fn) {
+  return function (req, res, params) {
+    req.params = params
+    req.query = qs.parse(url.parse(req.url).query)
+    return fn(req, res)
+  }
+}
+
+const get = (path, fn, store) => ['GET', path, enhancer(fn), store]
+const put = (path, fn, store) => ['PUT', path, enhancer(fn), store]
+const del = (path, fn, store) => ['DELETE', path, enhancer(fn), store]
+const post = (path, fn, store) => ['POST', path, enhancer(fn), store]
+const head = (path, fn, store) => ['HEAD', path, enhancer(fn), store]
+const patch = (path, fn, store) => ['PATCH', path, enhancer(fn), store]
+const options = (path, fn, store) => ['OPTIONS', path, enhancer(fn), store]
 
 module.exports = {
   router,
