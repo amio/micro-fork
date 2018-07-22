@@ -11,10 +11,10 @@ function router (options) {
 }
 
 function enhancer (fn) {
-  return function (req, res, params) {
+  return function (req, res, params, store) {
     req.params = params
     req.query = qs.parse(url.parse(req.url).query)
-    return fn(req, res)
+    return fn(req, res, store)
   }
 }
 
