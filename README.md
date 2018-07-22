@@ -41,8 +41,8 @@ You can use your handler as an async function:
 const { send } = require('micro')
 const { router, get } = require('micro-fork')
 
-const hello = async (req, res, params) =>
-  send(res, 200, await Promise.resolve(`Hello ${params.who}`))
+const hello = async (req, res) =>
+  send(res, 200, await Promise.resolve(`Hello ${req.params.who}`))
 
 module.exports = router()(
   get('/hello/:who', hello)
@@ -54,7 +54,7 @@ module.exports = router()(
 Initialize a router:
 
 ```javascript
-router([options = Object])(
+router(options)(
   routeMethodA,
   routeMethodB,
   // ...
@@ -85,25 +85,46 @@ For more information about how you can define your path, see [find-my-way](https
 #### handler
 
 The `handler` method is a simple function that will make some action base on your path.
-The format of this function is `(req, res, params, store) => {}`
+The format of this function is `(req, res, store) => {}`
 
-##### `params`
+##### `req.params`
 
-As you can see below, the `params` parameter represents the parameters defined in your `path`:
+As you can see below, the `req.params` parameter represents the parameters defined in your `path`:
 
 ```js
-const { router, get } = require('micro-fork')
-const request = require('some-request-lib')
-
 // service.js
+const { send } = require('micro')
+const { router, get } = require('micro-fork')
+
 module.exports = router()(
-  get('/hello/:who', (req, res, params) => params)
+  get('/hello/:who', (req, res) => send(req.params))
 )
 
 // test.js
+const request = require('some-request-lib')
 const response = await request('/hello/World')
 
 console.log(response)  // { who: 'World' }
+```
+
+##### `req.query`
+
+`req.query` represents parsed query parameters:
+
+```js
+// service.js
+const { send } = require('micro')
+const { router, get } = require('micro-fork')
+
+module.exports = router()(
+  get('/hello', (req, res) => send(req.query))
+)
+
+// test.js
+const request = require('some-request-lib')
+const response = await request('/hello?from=john')
+
+console.log(response)  // { from: 'john' }
 ```
 
 #### `store`
@@ -115,11 +136,10 @@ Last argument, `store` is used to pass an object that you can access later insid
 By default, router _doens't parse anything_ from your requisition, it's just match your paths and execute a specific handler. So, if you want to parse your body requisition you can do something like that:
 
 ```js
+// service.js
 const { router, post } = require('micro-fork')
 const { json, send } = require('micro')
-const request = require('some-request-lib')
 
-// service.js
 const user = async (req, res) => {
   const body = await json(req)
   send(res, 200, body)
@@ -130,6 +150,8 @@ module.exports = router()(
 )
 
 // test.js
+const request = require('some-request-lib')
+
 const body = { id: 1 }
 const response = await request.post('/user', { body })
 ```
