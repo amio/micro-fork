@@ -7,7 +7,7 @@
   "repository": "https://github.com/amio/micro-fork",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*.spec.js --reporter spec"
+    "test": "tap test/*.spec.js --reporter spec --coverage"
   },
   "dependencies": {
     "find-my-way": "^1.13.0"
