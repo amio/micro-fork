@@ -1,6 +1,6 @@
 {
   "name": "micro-fork",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fast micro router.",
   "author": "Amio <amio.cn@gmail.com>",
   "license": "ISC",
