@@ -1,8 +1,11 @@
-# micro-fork [![npm version][npm-badge]][npm-link]
+<h1 align="center"><img height="80" src="micro-fork.svg" /><br />micro-fork</h1>
+
+[![npm-badge]][npm-link]
+[![size-badge]][size-link]
 
 A fast and functional router for ZEIT's [Micro](https://github.com/zeit/micro).
 Inspired by [microrouter](https://github.com/pedronauck/micro-router),
-but use [find-my-way](https://github.com/delvedor/find-my-way) underneath.
+use [find-my-way](https://github.com/delvedor/find-my-way) underneath.
 
 ## Features
 
@@ -163,3 +166,5 @@ ISC @ Amio
 [amio-link]: https://github.com/amio
 [npm-badge]: https://flat.badgen.net/npm/v/micro-fork
 [npm-link]: https://www.npmjs.com/package/micro-fork
+[size-badge]: https://flat.badgen.net/bundlephobia/minzip/micro-fork
+[size-link]: https://bundlephobia.com/result?p=micro-fork
