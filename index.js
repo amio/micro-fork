@@ -1,4 +1,3 @@
-const qs = require('querystring')
 const url = require('url')
 const fmw = require('find-my-way')
 
@@ -13,7 +12,7 @@ function router (options) {
 function enhancer (fn) {
   return function (req, res, params, store) {
     req.params = params
-    req.query = qs.parse(url.parse(req.url).query)
+    req.query = url.parse(req.url, true).query
     return fn(req, res, store)
   }
 }
