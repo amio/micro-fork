@@ -10,14 +10,14 @@ const server = require('http').createServer(router()(
 ))
 
 tap.test('Exports right api types', t => {
-  t.is(typeof router, 'function')
-  t.is(typeof get, 'function')
-  t.is(typeof put, 'function')
-  t.is(typeof del, 'function')
-  t.is(typeof post, 'function')
-  t.is(typeof head, 'function')
-  t.is(typeof patch, 'function')
-  t.is(typeof options, 'function')
+  t.equal(typeof router, 'function', 'exports function router')
+  t.equal(typeof get, 'function', 'exports function get')
+  t.equal(typeof put, 'function', 'exports function put')
+  t.equal(typeof del, 'function', 'exports function del')
+  t.equal(typeof post, 'function', 'exports function post')
+  t.equal(typeof head, 'function', 'exports function head')
+  t.equal(typeof patch, 'function', 'exports function patch')
+  t.equal(typeof options, 'function', 'exports function options')
   t.end()
 })
 
