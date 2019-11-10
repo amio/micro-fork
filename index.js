@@ -1,4 +1,4 @@
-const url = require('url')
+const querystring = require('querystring')
 const fmw = require('find-my-way')
 
 function router (options) {
@@ -12,7 +12,7 @@ function router (options) {
 function enhancer (fn) {
   return function (req, res, params, store) {
     req.params = params
-    req.query = url.parse(req.url, true).query
+    req.query = querystring.parse(new URL(req.url, `http://${req.headers.host}`).searchParams.toString())
     return fn(req, res, store)
   }
 }
