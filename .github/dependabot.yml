@@ -1,0 +1,19 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "21:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: tap
+    versions:
+    - 14.11.0
+    - 15.0.0
+    - 15.0.1
+    - 15.0.2
+    - 15.0.4
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
