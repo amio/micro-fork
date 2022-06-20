@@ -10,7 +10,7 @@
     "test": "tap test/*.spec.js --reporter spec --coverage"
   },
   "dependencies": {
-    "find-my-way": "^5.0.0"
+    "find-my-way": "^7.0.0"
   },
   "devDependencies": {
     "supertest": "^6.1.4",
